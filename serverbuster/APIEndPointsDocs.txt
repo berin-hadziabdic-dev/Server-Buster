@@ -1,0 +1,29 @@
+This document lays out the web-app communication protocol sent to and from the ClientReque
+via HTTP.
+
+When statusCode = 200, it means the APIendPoint action was completed.
+When statusCode = 400, it means the actions was not completed.
+Route: /testserver
+
+ServerResponse:
+{statuscode:(200|400), content-type:json, body = null on 200 | {msg:string} on 400}
+    
+ClientRequest:
+{ 
+ headers: content-type:"app/json", 
+ body:{host:string, //the host you'd like to send requests to. Cannot be null,undefined, and must be a valid string. May contain letters and numbers.
+ path:string,   // the path on the host you'd like to target. I.e: www.hostname.com/path. Not validated. Empty string by default
+ method:string,  // the http method which you would like to invoke on the route. validated. can be get, put,post,delete Other methods may be supported down in the future.
+ reqspersecond:number,  //the reqs per second youd like to dispatch. must be a number greater than zero. validated.
+ secondduration: number, //the second duration(1second, 2seconds,...,5000seconds) of dispatching requests to the server.vaidated.
+ portnumber: number, // the TCP portnumber of the host to send the request to. Optional but if included must be valid number. validated.
+ forks: //The number of test procs you'd like to fork in case 1 is not enough.
+ datafetch: boolean // Indicates if you'd like to fetch dataset for spam session like headers or a body. validated.
+ //if set to false, data will never be fetched through the network and requests will be dispatched
+ //with no user defined headers or bodies.
+ datahost: string,  // the host that stores the dataset. required.
+ datapath: string,  //the apiendpoint of the dataset on the host optional. basic validation if included.
+ dataheaders: {headerName0:headerValue0, ..., headerNameN:headerValueN} headers youd like to send to datahosting apiendpoint. optional not validated.
+ dataport: number //the data port to of the apiendpoint to send to.  optional. validated if included.
+ datamethod: string // the method which to pull data with (get,put,post..etc) required. validated.
+}

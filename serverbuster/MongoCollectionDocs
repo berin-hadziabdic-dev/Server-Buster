@@ -1,0 +1,60 @@
+MongoCollection Docs
+
+DB = testsets
+collection = sets
+
+collectionDocument definition:
+
+collectionobject = {
+testsetname: string with no spaces allowed,
+testset: {
+    testsetname:string with no spaces,tabs, newlines, and other space like chars allowed,
+    host: string with no uri illegal chars allowed
+    paths: object with nested object values of -> index: {path: string starting with / no uri illegal chars allowed, method: string whose values must be get,put,delete,or post}
+    method: string whose acceptable values at the moment are get,put,post, delete.
+    port: integer number whose acceptable values are 1 and up.
+    reqspersecond: integer number. values are 1 and up
+    secondduration: integer number. 1 and up.
+    forks: number acceptable values are numbers one and greater
+    datafetch: boolean acceptable values are true or false
+    datahost: string with no spaces or uri illegal chars allowed
+    datapath: string allowed to be empty. if not empty must begin with /. no illegal uri chars allowed.
+    datamethod: string whose acceptable values at the moment are get,put,post, delete.
+    dataport: integer number whose acceptable values are 1 and up.
+    databody: string no restrictions. empty string if user supplies no input.
+    reqspreview: undefined or object. Refer to req object defined in reports for elaboration.
+},
+reports: [
+  {  report_name: (string not no spaces or space like chars like tabs newlines allowed) 
+    {
+        path: {
+            index0: {req:{headers:{header_name0:header_value0 ... header_name_n:header_value_n }, body: string empty strings allowed no input restrictions}
+            .
+            .
+            indexN: .....
+        }
+        .
+        .
+        .
+        path: ....
+
+    }
+    .
+    .
+    .
+    .
+    report_nameN: ...
+}
+dataset: undefined OR 
+{
+    0 : {
+            headers:{header_name0:header_value0,...,header_name_n:header_value_n}, 
+            body:string value with no restrictions. empty string if no body provided.
+        }
+    .
+    .
+    .
+    n: {...}   
+}
+  }
+]
