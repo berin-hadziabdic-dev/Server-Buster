@@ -1,7 +1,7 @@
 //Dependencies
 const express = require("express");
 const app = express();
-const port = 8080;
+const { app_port } = require("./UserConfig/Config");
 const path = require("path");
 
 const {
@@ -17,7 +17,6 @@ const {
   deletetestset,
   gettestsetreports,
   getreport,
-  postloadreportnames,
   testsetname_exists,
   porker_forker,
   reportname_exists,
@@ -120,6 +119,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/build/index.html"));
 });
 
-app.listen(port, () => {
+app.listen(app_port, () => {
   console.log("SB Backend running...");
 });

@@ -1,4 +1,4 @@
-const { connect_to_db } = require("../UserConfig/connection");
+const { connect_to_db } = require("../UserConfig/Config");
 const {
   validateTestSet,
   notNullUndefined,

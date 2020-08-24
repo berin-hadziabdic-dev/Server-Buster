@@ -1,0 +1,17 @@
+{
+  "name": "back-end-sb",
+  "version": "1.0.0",
+  "description": "Backend deps for sb",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongo": "^0.1.0",
+    "path": "^0.12.7"
+  }
+}
